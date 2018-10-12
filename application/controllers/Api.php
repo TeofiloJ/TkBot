@@ -15,11 +15,35 @@ class Api extends CI_Controller {
     
     public function characters($name = null){
         $character_result = $this->character_model->get($name);
+        $data = array(
+            'data' => json_encode($character_result)
+        );
+        $this->load->view('data', $data);
+    }
+
+    public function movesets($fParam = null, $sParam = null){
+        $moveset_result = array();
+        if($sParam == null){
+            //check if fParam is a name
+            $character_result = $this->character_model->get($fParam);
+            if(count($character_result)>0){
+                //fParam is a name
+                $moveset_result = $this->moveset_model->get_by_character_name_by_input($fParam, $sParam);
+            }else{
+                //fParam is the command
+                $moveset_result = $this->moveset_model->get_by_character_name_by_input(null, $fParam);
+            }
+        }else{
+            $moveset_result = $this->moveset_model->get_by_character_name_by_input($fParam, $sParam);
+        }
+
+        
+        
 
         $data = array(
-            'character_result' => $character_result
+            'data' => json_encode($moveset_result)
         );
 
-        $this->load->view('character_data', $data);
+        $this->load->view('data', $data);
     }
 }
