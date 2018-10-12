@@ -25,4 +25,11 @@ class tkBot extends CI_Controller {
 		$this->load->view('frames');
 		$this->load->view('footer');
 	}
+
+	public function characters(){
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('character_list');
+		$this->load->view('footer');
+	}
 }
