@@ -78,23 +78,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
     function getData(character, command){
-      var test = "http://localhost/TkBot/index.php/api/characters/lars";
+      character = character?character+"/":"";
+      console.log("C " + character );
+      console.log("com" + command);
+      command = command?command:"";
+      var test = "<?php echo base_url()?>" + "index.php/api/movesets/" + character + command;
       console.log(test);
       jQuery.ajax({
       type: "GET",
-      url: "http://localhost/TkBot/index.php/api/movesets/lars",
+      url: "<?php echo base_url()?>" + "index.php/api/movesets/" + character + command,
       dataType: 'json',
       success: function(data) {
-        var tab = document.getElementByID("tableau")
+        var tab = document.getElementById("tableau")
         while(tab.firstChild){
           tab.removeChild(tab.firstChild);
         }
-        
-        for (var ligne in data){
+        console.log(data);
+        for (var ligne of data){
           var row = document.createElement("tr");
           for (var element in ligne){
             var cell = document.createElement("td");
-                cell.innderText = data[element];
+                cell.innerText = ligne[element];
                 row.appendChild(cell);
           }
           tab.appendChild(row);
