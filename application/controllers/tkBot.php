@@ -20,16 +20,20 @@ class tkBot extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('frames');
-		$this->load->view('footer');
+		$this->characters();
 	}
 
 	public function characters(){
 		$this->load->view('header');
 		$this->load->view('menu');
 		$this->load->view('character_list');
+		$this->load->view('footer');
+	}
+
+	public function frame(){
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('frames');
 		$this->load->view('footer');
 	}
 }
