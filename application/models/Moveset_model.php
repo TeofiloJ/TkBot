@@ -21,7 +21,7 @@ class Moveset_model extends CI_Model {
             $this->db->where('movesets.character_name', $character_name);
         }
 
-        if($character_name != null && $character_name != ''){
+        if($input != null && $input != ''){
             $this->db->like('movesets.command', $input);
         }
         $query = $this->db->get();
