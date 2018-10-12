@@ -10,7 +10,11 @@ class Api extends CI_Controller {
     }
 
 	public function index(){
-		$this->load->view('api_index');
+        $this->load->view('header');
+        $this->load->view('menu');		
+        $this->load->view('api_index');
+		$this->load->view('footer');
+
     }
     
     public function characters($name = null){
